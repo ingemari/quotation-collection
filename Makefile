@@ -15,18 +15,7 @@ go:
 
 .PHONY: pg
 pg:
-	@if [ $$(docker ps -aq -f name=$(PG_CONTAINER_NAME)) ]; then \
-		echo "Postgres container already exists"; \
-		docker start -a $(PG_CONTAINER_NAME); \
-	else \
-		echo "Starting new postgres container..."; \
-		docker run --name $(PG_CONTAINER_NAME) \
-			-e POSTGRES_PASSWORD=$(DATABASE_PASSWORD) \
-			-e POSTGRES_USER=$(DATABASE_USER) \
-			-e POSTGRES_DB=$(DATABASE_NAME) \
-			-p $(DATABASE_PORT):$(DATABASE_PORT) \
-			-d postgres; \
-	fi
+	@docker run --name=postgres -e POSTGRES_PASSWORD=postgres -p 5432:5432 -d --rm postgres
 
 .PHONY: psql
 psql:

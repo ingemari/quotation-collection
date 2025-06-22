@@ -22,8 +22,9 @@ func SetupRouter(db *pgxpool.Pool, logger *slog.Logger) *mux.Router {
 
 	// open routes
 	router.HandleFunc("/quotes", quoteHandler.HandleCreateQuote).Methods("POST")
-	//router.HandleFunc("/quotes", quoteHandler.HandleRegister).Methods("GET")
-	//router.HandleFunc("/quotes/random", quoteHandler.HandleRegister).Methods("GET")
+	//router.HandleFunc("/quotes", quoteHandler.HandleGetAllQuotes).Methods("GET")
+	router.HandleFunc("/quotes/random", quoteHandler.HandleGetRandomQuote).Methods("GET")
+	router.HandleFunc("/quotes", quoteHandler.HandleGetQuotesByAuthor).Methods("GET").Queries("author", "{author}")
 	//router.HandleFunc("/quotes/{id}", quoteHandler.HandleRegister).Methods("DELETE")
 
 	return router

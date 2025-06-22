@@ -5,7 +5,7 @@ type CreateQuoteReq struct {
 	Quote  string `json:"quote"`
 }
 
-type CreateQuoteResp struct {
+type QuoteResp struct {
 	ID      string `json:"id"`
 	Author  string `json:"author"`
 	Quote   string `json:"quote"`
