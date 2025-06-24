@@ -85,7 +85,7 @@ func (r *QuoteRepository) GetQuotesByAuthor(ctx context.Context, author string) 
 	query := `
 		SELECT id, author, quote, created_at
 		FROM quotes
-		WHERE author = $1
+		WHERE LOWER(author) = LOWER($1)
 	`
 
 	rows, err := r.db.Query(ctx, query, author)
